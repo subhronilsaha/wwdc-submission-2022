@@ -1,3 +1,4 @@
+<img src="demo/cover.png" width="100%">
 
 # Bezier Curves
 
