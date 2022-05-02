@@ -8,13 +8,13 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "WWDC-Submission-2022",
+    name: "Bezier Curves - WWDC22",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "WWDC-Submission-2022",
+            name: "Bezier Curves - WWDC22",
             targets: ["AppModule"],
             bundleIdentifier: "com.subhronil.saha.WWDC-Submission-2022",
             teamIdentifier: "47F65AFS84",

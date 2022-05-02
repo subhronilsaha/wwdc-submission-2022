@@ -3,6 +3,7 @@ import Combine
 
 struct PageOne: View {
     @Binding var currentPage: Int
+    @EnvironmentObject var audioManager: AudioManager
     @State private var thickness: Double = 1.0
     @State private var touchPoints = [CGPoint]()
     @State private var pointColor1 = Color.blue
@@ -31,23 +32,54 @@ struct PageOne: View {
                         BackButtonView()
                     }
                     Spacer()
+                    
+                    Button {
+                        audioManager.toggleMusicPlayer()
+                    } label: {
+                        
+                        HStack(spacing: 10) {
+                            Text("Audio\nControls")
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.trailing)
+                            
+                            audioManager.isMusicPlaying ?
+                            Image(systemName: "pause.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(.white)
+                            :
+                            Image(systemName: "play.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(.white)
+                        }
+                        
+                    }
                 }
                 
                 //MARK: Text content
                 VStack(alignment: .leading, spacing: 20) {
 
-                    Text("Linear Bézier Curves")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                    HStack {
+                        Text("Linear Bézier Curves")
+                            .foregroundColor(.yellow)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
                         
-                    Text("This is the simplest kind of Bézier curve, where, given 2 distinct points P0 and P1, a linear Bézier curve is simply a straight line between those two points.")
-                        .foregroundColor(.white)
-                        .font(.system(size: 25))
+                        Spacer()
+                        
+                        WaveForm(color: .purple, color2: .pink, color3: .orange, amplitude: 0, isReversed: false)
+                    }
+                    .frame(height: 50)
                     
-                    Text("Lets try to create a Linear Bezier Curve between points P0 & P1. To do this first tap anywhere below to create point P0, then tap again to create point P1. A linear bezier curve will be created joining these 2 points")
+                        
+                    Text("This is the simplest kind of Bézier curve, where, given 2 distinct points P0 and P1, a linear Bézier curve is simply a straight line between those two points.\n\nLets try to create a Linear Bezier Curve between points P0 & P1. To do this first tap anywhere (in the free space) below to create point P0, then tap again to create point P1. A linear bezier curve will be created joining these 2 points")
                         .foregroundColor(.white)
-                        .font(.system(size: 25))
+                        .font(.system(size: 22))
+                    
+//                    Text("")
+//                        .foregroundColor(.white)
+//                        .font(.system(size: 22))
                 }
                 
                 //MARK: Canvas

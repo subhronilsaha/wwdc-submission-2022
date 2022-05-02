@@ -10,6 +10,7 @@ import Combine
 
 struct PageTwo: View {
     @Binding var currentPage: Int
+    @EnvironmentObject var audioManager: AudioManager
     @State private var thickness: Double = 1.0
     @State private var touchPoints = [CGPoint]()
     @State private var pointColor1 = Color.blue
@@ -40,23 +41,50 @@ struct PageTwo: View {
                         BackButtonView()
                     }
                     Spacer()
+                    Button {
+                        audioManager.toggleMusicPlayer()
+                    } label: {
+                        
+                        HStack(spacing: 10) {
+                            Text("Audio\nControls")
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.trailing)
+                            
+                            audioManager.isMusicPlaying ?
+                            Image(systemName: "pause.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(.white)
+                            :
+                            Image(systemName: "play.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(.white)
+                        }
+                        
+                    }
                 }
                 
                 //MARK: Text content
                 VStack(alignment: .leading, spacing: 20) {
 
-                    Text("Quadratic Bézier Curves")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                    HStack(spacing: 10) {
+                        Text("Quadratic Bézier Curves")
+                            .foregroundColor(.orange)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.leading)
                         
-                    Text("A smooth curve is created between two points with the help of a control point C")
+//                        Spacer()
+                        
+                        WaveForm(color: .purple, color2: .pink, color3: .orange, amplitude: 20, isReversed: false)
+                    }
+                    .frame(maxHeight: 60)
+                                            
+                    Text("A smooth curve is created between two points with the help of a control point C\n\nLets try to create a Quadratic Bezier Curve between two points P0 & P1.\n1. Tap to create a point P0.\n2. Select control point C.\n3. Select point P1.")
                         .foregroundColor(.white)
                         .font(.system(size: 25))
                     
-                    Text("Lets try to create a Quadratic Bezier Curve between two points P0 & P1.\n1. Tap to create a point P0.\n2. Select control point C.\n3. Select point P1.")
-                        .foregroundColor(.white)
-                        .font(.system(size: 25))
                 }
                 
                 //MARK: Canvas

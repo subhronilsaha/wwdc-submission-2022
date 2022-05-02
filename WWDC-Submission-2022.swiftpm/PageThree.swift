@@ -4,6 +4,7 @@ import Combine
 
 struct PageThree: View {
     @Binding var currentPage: Int
+    @EnvironmentObject var audioManager: AudioManager
     @State private var thickness: Double = 1.0
     @State private var touchPoints = [CGPoint]()
     @State private var pointColor1 = Color.blue
@@ -35,23 +36,47 @@ struct PageThree: View {
                         BackButtonView()
                     }
                     Spacer()
+                    Button {
+                        audioManager.toggleMusicPlayer()
+                    } label: {
+                        
+                        HStack(spacing: 10) {
+                            Text("Audio\nControls")
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.trailing)
+                            
+                            audioManager.isMusicPlaying ?
+                            Image(systemName: "pause.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(.white)
+                            :
+                            Image(systemName: "play.circle.fill")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(.white)
+                        }
+                        
+                    }
                 }
                 
                 //MARK: Text content
                 VStack(alignment: .leading, spacing: 20) {
-
-                    Text("Cubic Bézier Curves")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        
-                    Text("A smooth curve is created between two points with the help of two control points")
-                        .foregroundColor(.white)
-                        .font(.system(size: 25))
                     
-                    Text("Lets try to create a Cubic Bezier Curve between two points P0 & P1.\n1. Tap to create a point P0.\n2. Select control points C1 & C2.\n3. Select point P1.")
+                    HStack(spacing: 20) {
+                        Text("Cubic Bézier Curves")
+                            .foregroundColor(Color(ColorPalette.hexStringToUIColor(hex: "#81BEA1")))
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                                                
+                        WaveForm(color: .purple, color2: .pink, color3: .orange, amplitude: 50, isReversed: false)
+                    }
+                    .frame(height: 40)
+                        
+                    Text("A smooth curve is created between two points with the help of two control points\n\nLets try to create a Cubic Bezier Curve between two points P0 & P1 in the free space below. You can try the following:\n1. Tap to create a point P0.\n2. Select control points C1 & C2.\n3. Select point P1.")
                         .foregroundColor(.white)
                         .font(.system(size: 25))
+                
                 }
                 
                 //MARK: Canvas
