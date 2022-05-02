@@ -25,9 +25,9 @@ Download the project and run the  `.swiftpm`  file on XCode iPad Pro Simulator.
 ## About Me
 
 Hi, I'm Subhronil Saha, and I built this playground! Know more about me here:
-LinkedIn: https://www.linkedin.com/in/subhronil-saha/
-Github: https://github.com/subhronilsaha
-Youtube: https://www.youtube.com/channel/UChgC6_MEWFqPH4-sdjiX4iQ
+1. LinkedIn: https://www.linkedin.com/in/subhronil-saha/
+2. Github: https://github.com/subhronilsaha
+3. Youtube: https://www.youtube.com/channel/UChgC6_MEWFqPH4-sdjiX4iQ
 
 ## Licenses
 
