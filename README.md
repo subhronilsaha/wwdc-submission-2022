@@ -4,6 +4,8 @@
 
 Demo : https://www.youtube.com/watch?v=tGBt9-qL9TM
 
+#### STATUS : Accepted 😎
+
 > ## Important Note:
 >- This Swift Playground app has been tested on Xcode 13.3 Simulator for iPad Pro 12.9 inch & iPad Air (5th Gen). Please use either for running the app.
 >- Also, please use Portrait orientation.
